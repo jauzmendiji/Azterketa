@@ -1,0 +1,21 @@
+import java.util.*;
+
+public class Receta {
+	private String nombreReceta, preparacion;
+	ArrayList<Ingrediente> ingredientes;
+
+	public void setnombreReceta (String nr){
+		nombreReceta = nr;
+	}
+	public String getnombreReceta(){
+		return nombreReceta;
+	}
+
+	public void setpreparacion (String prep){
+		preparacion = prep;
+	}
+	public String getpreparacion(){
+		return preparacion;
+	}
+
+}
