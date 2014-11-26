@@ -5,14 +5,21 @@ public class Receta {
 	ArrayList<Ingrediente> ingredientes;
 
 	public void setnombreReceta (String nr){
-		nombreReceta = nr;
+		this.nombreReceta = nr;
 	}
 	public String getnombreReceta(){
 		return nombreReceta;
 	}
 
+	public void setingredientes (ArrayList<Ingrediente> ingrs){
+		this.ingredientes = ingrs;
+	}
+	public ArrayList<Ingrediente> getingredientes(){
+		return ingredientes;
+	}
+
 	public void setpReparacion (String prep){
-		pReparacion = prep;
+		this.pReparacion = prep;
 	}
 	public String getpReparacion(){
 		return pReparacion;

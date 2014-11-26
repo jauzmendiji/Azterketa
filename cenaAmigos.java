@@ -14,13 +14,13 @@ public class cenaAmigos {
 
 		Scanner sc = new Scanner(System.in);
 		ArrayList<Receta> alReceta = new ArrayList<Receta>();
-		ArrayList<Ingrediente> alIngrediente = new ArrayList<Ingrediente>();
-		Receta receta = new Receta ();
-		Ingrediente ingrediente = new Ingrediente ();	
+		ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+		
 		System.out.print("\n¿Cuantas recetas vas a escribir? ");
 		cantrece = sc.nextInt();
 	while (cantrece != 0) {
 
+		Receta receta = new Receta ();
 		System.out.print("\nInformacion de la receta -->  ");
 		System.out.print("\n\nNombre de la receta: ");
 		nombrereceta = sc.next();
@@ -31,8 +31,11 @@ public class cenaAmigos {
 		System.out.print("\n\n--Ingredientes------- ");
 		System.out.print("\n¿Cuantos ingredientes utilizaras?");
 		cantingre = sc.nextInt();
+		ingredientes = new ArrayList<Ingrediente>();
+
 		while (cantingre != 0 ){
 
+			Ingrediente ingrediente = new Ingrediente ();
 			System.out.print("\nNombre del ingrediente: ");
 			nombreingrediente = sc.next();
 			ingrediente.setnombreIngrediente(nombreingrediente);
@@ -61,33 +64,44 @@ public class cenaAmigos {
 				else {
 					System.out.print("\nRespuesta invalida");
 				}
-		alIngrediente.add(ingrediente);}		
-		receta.setIngredientes(alIngrediente);
-		alReceta.add(receta);		
-		cantingre = cantingre - 1;	
+		ingredientes.add(ingrediente);
+		cantingre = cantingre - 1;}
+		receta.setingredientes(ingredientes);
+		alReceta.add(receta);//del while
+    	cantrece = cantrece - 1;
+    	}		
 		
-
-		Iterator<Ingrediente> itrIngre = alIngrediente.iterator();
-			Ingrediente part = (Ingrediente)itrIngre.next();
-
 		try{
-            
-            File fichero = new File ("/home/zubiri/proyectojava/java2/azterketa/recetas.txt");
-            FileWriter fw = new FileWriter("/home/zubiri/proyectojava/java2/azterketa/recetas.txt", true);
-            //Escribimos en el fichero
-            fw.write(nombrereceta + ";" + part.getnombreIngrediente() +  "*" + part.getcantidadGramos() + "*" + part.getcantidadUnidad() + "*" + part.getenGramos()+ ";" + preparacion + "\n");
-            //Cierro
-            fw.close(); 
-            //Abro el stream, el fichero debe existir
-            FileReader fr = new FileReader("/home/zubiri/proyectojava/java2/azterketa/recetas.txt");
-            //Cerramos el stream
-            fr.close();
+
+			File fichero = new File ("/home/zubiri/proyectojava/java2/azterketa/recetas.txt");
+			FileWriter fw = new FileWriter(fichero,true);
+
+			for(int a=0; a<alReceta.size(); a++){
+				ingredientes = alReceta.get(a).getingredientes();
+				fw.write(alReceta.get(a).getnombreReceta()+";");
+				for(int o=0; o<ingredientes.size(); o++){
+					fw.write(ingredientes.get(o).getnombreIngrediente()+"*"+ingredientes.get(o).getcantidadGramos()+"*"+ingredientes.get(o).getcantidadUnidad()+"*"+ingredientes.get(o).getenGramos()+"#");
+				}
+				fw.write(";"+alReceta.get(a).getpReparacion()+"\n");
+			}
+			fw.close();
+            /*File fichero = new File ("/home/zubiri/proyectojava/java2/azterketa/recetas.txt");
+            FileWriter fw = new FileWriter( fichero, true);
+
+            for(int r = 0; r < alReceta.size(); r++){
+            	alIngrediente = alReceta.get(r).getingredientes();
+	            fw.write(alReceta.get(r).getnombreReceta() + ";");
+	            for(int i = 0; i < alIngrediente.size(); i++){
+					fw.write(alIngrediente.get(i).getnombreIngrediente()+"*"+alIngrediente.get(i).getcantidadGramos()+"*"+alIngrediente.get(i).getcantidadUnidad()+"*"+alIngrediente.get(i).getenGramos()+"#");
+	            }	
+            	fw.write(";" + alReceta.get(r).getpReparacion() + "\n");
+
+        	}	
+       		fw.close();*/
         }catch(IOException e){
             System.out.println("Error E/S: "+e);
         }
-    	//del while
-    	cantrece = cantrece - 1;
-    	}
+    	
 
     	try{
     FileReader fr = new FileReader ("/home/zubiri/proyectojava/java2/azterketa/recetas.txt");

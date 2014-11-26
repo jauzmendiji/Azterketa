@@ -1,4 +1,2 @@
-jon;papas*-1*2*false;bota
-jon;sal*2*-1*true;bota
-auzmendi;papas*-1*2*false;bota
-auzmendi;sal*2*-1*true;bota
+jon;sal*2*-1*true#kaka*-1*2*false#;bota
+auzmendi;kaka*2*-1*true#;bota
