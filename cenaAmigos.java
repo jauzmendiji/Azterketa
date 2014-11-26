@@ -85,25 +85,44 @@ public class cenaAmigos {
 				fw.write(";"+alReceta.get(a).getpReparacion()+"\n");
 			}
 			fw.close();
-            /*File fichero = new File ("/home/zubiri/proyectojava/java2/azterketa/recetas.txt");
-            FileWriter fw = new FileWriter( fichero, true);
 
-            for(int r = 0; r < alReceta.size(); r++){
-            	alIngrediente = alReceta.get(r).getingredientes();
-	            fw.write(alReceta.get(r).getnombreReceta() + ";");
-	            for(int i = 0; i < alIngrediente.size(); i++){
-					fw.write(alIngrediente.get(i).getnombreIngrediente()+"*"+alIngrediente.get(i).getcantidadGramos()+"*"+alIngrediente.get(i).getcantidadUnidad()+"*"+alIngrediente.get(i).getenGramos()+"#");
-	            }	
-            	fw.write(";" + alReceta.get(r).getpReparacion() + "\n");
-
-        	}	
-       		fw.close();*/
         }catch(IOException e){
             System.out.println("Error E/S: "+e);
         }
     	
+		try{
+			File archivorece = new File("/home/zubiri/proyectojava/java2/azterketa/recetas.txt");
+			FileInputStream irastream = new FileInputStream(archivorece);
+	        InputStreamReader ira = new InputStreamReader(irastream, "UTF8");
+	        BufferedReader br = new BufferedReader(ira);
 
-    	try{
+	        String linea;
+	        linea = br.readLine();
+	        String [] zatika = null;
+	        System.out.println("\nRecetas:  ");
+	        while(linea!=null){
+	        	zatika = linea.split(";");
+	        	System.out.println("--------------------------------");
+	        	System.out.println("Nombre: "+zatika[0]);
+	       		System.out.println("Preparacion: "+zatika[2]);
+	       		String ingrez = zatika[1];
+	       		zatika = ingrez.split("#");
+	       		for(int x=0; x<zatika.length; x++){
+	       			String ingrezatika = zatika[x];
+	       			String [] zatika2 = ingrezatika.split("\\*");
+	       			System.out.println("->Ingredientes: ");
+	       			System.out.println("--->Nombre: "+zatika2[0]);
+	       			System.out.println("--->Gramos: "+zatika2[1]);
+	       			System.out.println("--->Unidades: "+zatika2[2]);
+	       		}
+	       		
+	       		linea = br.readLine();
+	        }
+	        
+	    }catch(Exception ioe){
+	    	System.out.println("Error: "+ioe);
+	    }
+    	/*try{
     FileReader fr = new FileReader ("/home/zubiri/proyectojava/java2/azterketa/recetas.txt");
 	BufferedReader br = new BufferedReader(fr); 
 	String s; 
@@ -114,6 +133,6 @@ public class cenaAmigos {
 		} 
 	catch (IOException ioe) {
 			System.out.println("Error E/S: " + ioe);
-	}
+	}*/
 }
 }

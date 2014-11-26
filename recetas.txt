@@ -1,2 +1,2 @@
-jon;sal*2*-1*true#kaka*-1*2*false#;bota
-auzmendi;kaka*2*-1*true#;bota
+Jonç;sal*200*-1*true#papas*-1*2*false#;mezklar
+auzmendi;pan*-1*2*false#lecheç*-1*2*false#;mojar
